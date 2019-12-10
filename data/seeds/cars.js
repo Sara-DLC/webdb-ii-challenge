@@ -5,12 +5,14 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('cars').insert([
-        {VIN: '23893BN3423',
+        {
+        VIN: '23893BN3423',
         Make: 'Jeep',
         Model: 'Renegade', 
         Mileage: 2554, 
         Transmission_Type: 'Automatic', 
-        Title_Status: 'Clean' },
+        Title_Status: 'Clean' 
+      },
 
         {VIN: '575U29JT',
         Make: 'Toyota',
