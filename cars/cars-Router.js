@@ -36,4 +36,38 @@ router.post('/', (req, res) => {
     })
 });
 
+router.put('/:id', (req, res) => {
+    const { id } =req.params;
+    const update = req.body;
+
+    db('cars')
+    .where({ id })
+    .update(update)
+    .then(count => {
+        count > 0 ? res.status(200).json({ message: `${count} record(s) updated`}) 
+        : res.status(404).json({ message: "record not found" });
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).json({
+        errorMessage: "Error updating the record"
+        });
+    });
+});
+
+router.delete('/:id', (req, res) =>{
+    db('cars')
+    .where({ id: req.params.id })
+    .del()
+    .then(count => {
+        res.status(200).json({ message: `${count} record(s) removed` })
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).json({
+        errorMessage: "Error removing the account"
+        });
+    });    
+});
+
 module.exports = router;
